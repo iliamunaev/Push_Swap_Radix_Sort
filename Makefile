@@ -16,12 +16,10 @@ LIBFT	= $(LIBDIR)/libft.a
 # Source files and object files
 SRCS	= $(SRCDIR)/main.c \
 			(SRCDIR)/init_stack.c \
-			(SRCDIR)/utils.c
-
+			(SRCDIR)/utils.c \
+			(SRCDIR)/assign_index.c
 
 OBJS     = $(addprefix $(OBJDIR)/, $(notdir $(SRCS:.c=.o)))
-
-
 
 # Rules
 all: $(LIBFT) $(NAME)

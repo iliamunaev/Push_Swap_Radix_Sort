@@ -6,7 +6,7 @@
 /*   By: imunaev- <imunaev-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 17:41:39 by imunaev-          #+#    #+#             */
-/*   Updated: 2025/01/09 14:18:54 by imunaev-         ###   ########.fr       */
+/*   Updated: 2025/01/09 18:38:55 by imunaev-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,38 +56,37 @@ static void print_test_stack(t_stacks *stx)
 
     for (int i = 0; i < max_height; i++)
     {
-        // Print stack_a's current value
+        // Print stack_a's current value and index
         if (i < height_a && current_a)
         {
-            printf("%-5d", current_a->value); // Align output for stack_a
+            printf("%-5d %-5d", current_a->value, current_a->index); // Align output for stack_a
             current_a = current_a->next;
         }
         else
         {
-            printf("     "); // Print spaces if stack_a has fewer elements
+            printf("          "); // Print spaces if stack_a has fewer elements
         }
 
-        // Tab space between the two stacks
+        // Tab space between stack_a and stack_b columns
         printf("\t");
 
-        // Print stack_b's current value
+        // Print stack_b's current value and index
         if (i < height_b && current_b)
         {
-            printf("%-5d", current_b->value); // Align output for stack_b
+            printf("%-5d %-5d", current_b->value, current_b->index); // Align output for stack_b
             current_b = current_b->next;
         }
         else
         {
-            printf("     "); // Print spaces if stack_b has fewer elements
+            printf("          "); // Print spaces if stack_b has fewer elements
         }
 
         printf("\n");
     }
 
     // Print the bottom separator and labels
-    printf("-----\t-----\n");
-    printf("  a  \t  b  \n");
-    printf("\n");
+    printf("----- -----\t----- -----\n");
+    printf("  a    idx\t  b    idx\n");
 }
 
 // ***********************************************************/
@@ -110,7 +109,14 @@ int	main(int ac, char **av)
 
 	printf("Initial Stacks:\n");
 	print_test_stack(stx);
-	printf("--------------------------\n");
+	printf("--------------------------\n\n");
+
+    if(!assign_index(stx))
+        return 1;
+
+    printf("Indexed Stacks:\n");
+	print_test_stack(stx);
+	printf("--------------------------\n\n");
 
 	// Run Push_Swap algorithm
 	//push_swap(stx);

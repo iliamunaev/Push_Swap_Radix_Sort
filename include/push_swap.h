@@ -6,7 +6,7 @@
 /*   By: imunaev- <imunaev-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 13:40:14 by imunaev-          #+#    #+#             */
-/*   Updated: 2025/01/09 17:30:53 by imunaev-         ###   ########.fr       */
+/*   Updated: 2025/01/09 18:34:02 by imunaev-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 typedef struct s_node
 {
 	int				value;
+	int				index;
 	struct s_node	*prev;
 	struct s_node	*next;
 }	t_node;
@@ -56,5 +57,6 @@ void	free_stx(t_stacks *stx);
 t_node *insert_num(t_node *head, int value);
 t_node	*create_node(int x);
 void	free_split_arrs(char ***arrs);
+int	assign_index(t_stacks *stx);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: imunaev- <imunaev-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 10:49:30 by imunaev-          #+#    #+#             */
-/*   Updated: 2025/01/09 17:30:43 by imunaev-         ###   ########.fr       */
+/*   Updated: 2025/01/09 18:29:42 by imunaev-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ t_node	*create_node(int x)
 	if (!new_node)
 		return (NULL);
 	new_node->value = x;
+	new_node->index = 0;
 	new_node->next = NULL;
 	new_node->prev = NULL;
 	return (new_node);
@@ -59,6 +60,7 @@ t_stacks	*fill_up_stack(t_stacks *stx, int *arr, int size)
 			free_stx(stx);
 			return (NULL);
 		}
+		stx->a->size++;
 		size--;
 	}
 	return (stx);

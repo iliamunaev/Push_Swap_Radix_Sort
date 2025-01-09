@@ -4,12 +4,6 @@
 
 int	assign_index(t_stacks *stx)
 {
-	printf("here!\n");
-
-	if(!stx)
-		printf("fail!\n");
-	printf("good!\n");
-
 	t_node *current;
 	t_node *compare;
 
