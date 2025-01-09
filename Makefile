@@ -2,9 +2,9 @@
 NAME = push_swap
 
 # Compiler and flags
-# TEST # CC = cc -fsanitize=address -g -O1
-CC = cc
-CFLAGS = -Wall -Wextra -Werror
+# TEST # gcc = gcc -fsanitize=address -g -O1
+CC = gcc
+CFLAGS = -Wall -Wextra -Werror -g
 
 # Directories
 SRCDIR	= src
@@ -19,7 +19,9 @@ SRCS	= $(SRCDIR)/main.c \
 			(SRCDIR)/utils.c \
 			(SRCDIR)/assign_index.c \
 			(SRCDIR)/commands.c \
-			(SRCDIR)/sort.c
+			(SRCDIR)/sort.c \
+			(SRCDIR)/error.c \
+			(SRCDIR)/sort_utils.c
 
 OBJS     = $(addprefix $(OBJDIR)/, $(notdir $(SRCS:.c=.o)))
 

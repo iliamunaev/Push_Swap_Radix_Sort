@@ -6,7 +6,7 @@
 /*   By: imunaev- <imunaev-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 10:49:30 by imunaev-          #+#    #+#             */
-/*   Updated: 2025/01/09 19:15:31 by imunaev-         ###   ########.fr       */
+/*   Updated: 2025/01/10 01:07:05 by imunaev-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,24 +29,24 @@ t_node	*create_node(int x)
 
 t_node *insert_num(t_node *head, int value)
 {
-    t_node *new_node;
-    t_node *last;
+	t_node *new_node;
+	t_node *last;
 
-    new_node = create_node(value);
-    if (!new_node)
-        return (NULL);
-    if (!head)
-    {
-        new_node->next = new_node;
-        new_node->prev = new_node;
-        return (new_node);
-    }
-    last = head->prev;
-    new_node->next = head;
-    new_node->prev = last;
-    last->next = new_node;
-    head->prev = new_node;
-    return (new_node);
+	new_node = create_node(value);
+	if (!new_node)
+		return (NULL);
+	if (!head)
+	{
+		new_node->next = new_node;
+		new_node->prev = new_node;
+		return (new_node);
+	}
+	last = head->prev;
+	new_node->next = head;
+	new_node->prev = last;
+	last->next = new_node;
+	head->prev = new_node;
+	return (new_node);
 }
 
 t_stacks	*fill_up_stack(t_stacks *stx, int *arr, int size)
@@ -57,7 +57,7 @@ t_stacks	*fill_up_stack(t_stacks *stx, int *arr, int size)
 		stx->a->head = insert_num(stx->a->head, arr[size]);
 		if (!stx->a->head)
 		{
-			free_stx(stx);
+			free_circular_list(stx->a->head);
 			return (NULL);
 		}
 		stx->a->size++;
@@ -70,10 +70,12 @@ static int ft_issign(char c)
 {
 	return(c == '-' || c == '+');
 }
+
 static int ft_isspace(char c)
 {
 	return(c == ' ' || c == '\n' || c == '\f' || c == '\r' || c == '\t' || c == '\v');
 }
+
 static long int 	ft_atoi_safe(char *s)
 {
 	int			sign;
@@ -85,7 +87,6 @@ static long int 	ft_atoi_safe(char *s)
 	sign = 1;
 	while (ft_isspace(s[i]))
 		i++;
-
 	if (ft_issign(s[i]))
 	{
 		if(s[i] == '-')
@@ -94,7 +95,6 @@ static long int 	ft_atoi_safe(char *s)
 		}
 		i++;
 	}
-
 	while (s[i] && ft_isdigit(s[i]))
 	{
 		num = num * 10 + (s[i] - '0');
@@ -133,23 +133,18 @@ int	fill_int_arr(char ***arrs, int *arr)
 
 int	*get_int_arr(int size, char ***arrs)
 {
-
 	int	*arr;
 
 	arr = malloc(size * sizeof(int));
 	if (!arr)
-	{
-		free_split_arrs(arrs);
 		return (NULL);
-	}
 	if(!fill_int_arr(arrs, arr))
 		return (NULL);
-
 	free_split_arrs(arrs);
 	return (arr);
 }
 
-int	get_len_arr(char ***arrs) // tested
+int	get_len_arr(char ***arrs)
 {
 	int	len;
 	int	i;
@@ -207,40 +202,38 @@ t_stacks	*init_stack(int ac, char **av)
 	if (!stx)
 		return (NULL);
 
+	stx->a = NULL;
+	stx->b = NULL;
 	stx->a = malloc(sizeof(t_stack));
 	if (!stx->a)
-	{
-		free_stx(stx);
-		return (NULL);
-	}
+		error_exit(stx);
+	stx->a->head = NULL;
+	stx->a->size = 0;
 	stx->b = malloc(sizeof(t_stack));
 	if (!stx->b)
-	{
-		free_stx(stx);
-		return (NULL);
-	}
-	stx->a->head = NULL;
+		error_exit(stx);
 	stx->b->head = NULL;
-	stx->a->size = 0;
 	stx->b->size = 0;
 
-	arrs = split_arrs(ac, av); // tested
+	arrs = split_arrs(ac, av);
 	if (!arrs)
-		return (NULL);
+		error_exit(stx);
 
-	size = get_len_arr(arrs); // tested
+	size = get_len_arr(arrs);
+	if(size == 0)
+		program_exit(stx, arrs);
 
 	arr = get_int_arr(size, arrs);
 	if (!arr)
 	{
-		free_stx(stx);
+		free_split_arrs(arrs);
 		return (NULL);
 	}
+	// continue from here
 	stx = fill_up_stack(stx, arr, size);
 	if (!stx)
 	{
-		free(arr);
-		free_stx(stx);
+		free_split_arrs(arrs);
 		return (NULL);
 	}
 	free(arr);

@@ -6,54 +6,68 @@
 /*   By: imunaev- <imunaev-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 19:18:35 by imunaev-          #+#    #+#             */
-/*   Updated: 2025/01/09 20:37:45 by imunaev-         ###   ########.fr       */
+/*   Updated: 2025/01/09 23:44:35 by imunaev-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-int is_sorted(t_stacks *stx)
+void	sort_2(t_stacks *stx)
 {
-	t_node *current;
+	if (stx->a->head->value > stx->a->head->next->value)
+		sa(stx);
+}
 
-	current = stx->a->head;
+void	sort_3(t_stacks *stx)
+{
+	int first = stx->a->head->value;
+	int second = stx->a->head->next->value;
+	int third = stx->a->head->next->next->value;
 
-	while (current->next != stx->a->head)
+	if (first > second && second > third)
 	{
-		if (current->value > current->next->value)
-			return (0);
-		current = current->next;
+		sa(stx);
+		rra(stx);
 	}
-	return (1);
+	else if (first > second && first > third && second < third)
+		ra(stx);
+	else if (first < second && first > third && second > third)
+	{
+		sa(stx);
+		ra(stx);
+	}
+	else if (first > second && first < third && second < third)
+		sa(stx);
+	else if (first < second && second > third && first < third)
+		rra(stx);
 }
 
-
-void sort_2(t_stacks *stx)
+void	sort_4_5(t_stacks *stx)
 {
-	(void)stx;
-	return ;
+	int min_index;
+
+	while (stx->a->size > 3)
+	{
+		min_index = find_min_index(stx->a);
+		while (stx->a->head->index != min_index)
+		{
+			if (get_index_position(stx->a, min_index) <= stx->a->size / 2)
+				ra(stx);
+			else
+				rra(stx);
+		}
+		pb(stx);
+	}
+	sort_3(stx);
+	while (stx->b->size > 0)
+		pa(stx);
 }
 
-void sort_3(t_stacks *stx)
-{
-	(void)stx;
-
-	return;
-}
-
-void sort_4_5(t_stacks *stx)
-{
-	(void)stx;
-
-	return;
-}
-
-void radix_sort_a(t_stacks *stx, int shift)
+void	radix_sort_a(t_stacks *stx, int shift)
 {
 	int	size;
 
 	size = stx->a->size;
-
 	while (size > 0)
 	{
 		if(((stx->a->head->index >> shift) & 1) == 0)
@@ -63,12 +77,11 @@ void radix_sort_a(t_stacks *stx, int shift)
 		size--;
 	}
 }
-void radix_sort_b(t_stacks *stx, int shift)
+void	radix_sort_b(t_stacks *stx, int shift)
 {
 	int	size;
 
 	size = stx->b->size;
-
 	while (size > 0)
 	{
 		if(((stx->b->head->index >> shift) & 0) == 0)
@@ -78,6 +91,7 @@ void radix_sort_b(t_stacks *stx, int shift)
 		size--;
 	}
 }
+
 void	radix_sort(t_stacks *stx)
 {
 	int shift;
@@ -95,9 +109,9 @@ void sort(t_stacks *stx)
 {
 	if(stx->a->size == 2)
 		sort_2(stx);
-	if(stx->a->size == 3)
+	else if(stx->a->size == 3)
 		sort_3(stx);
-	if(stx->a->size >= 4 &&  stx->a->size <= 5)
+	else if(stx->a->size >= 4 &&  stx->a->size <= 5)
 		sort_4_5(stx);
 	else
 		radix_sort(stx);

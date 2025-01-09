@@ -6,7 +6,7 @@
 /*   By: imunaev- <imunaev-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 17:41:39 by imunaev-          #+#    #+#             */
-/*   Updated: 2025/01/09 20:22:00 by imunaev-         ###   ########.fr       */
+/*   Updated: 2025/01/09 23:46:03 by imunaev-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,20 +98,20 @@ int	main(int ac, char **av)
 {
 	t_stacks	*stx;
 
-	// validation()
+	// validation() + dupicatrs
 
 	// Initialize stacks
 	stx = init_stack(ac - 1, av + 1); // Skip the program name
 	if (!stx)
-		return (1);
+		error_exit(stx);
 
 /*
 	printf("Initial Stacks:\n");
 	print_test_stack(stx);
 */
 
-	if(!assign_index(stx))
-		return 1;
+	assign_index(stx);
+
 
 	//printf("Indexed Stacks:\n");
 	//print_test_stack(stx);
@@ -156,5 +156,5 @@ int	main(int ac, char **av)
 
 
 	free_stx(stx);
-	return (0);
+	return (EXIT_SUCCESS);
 }

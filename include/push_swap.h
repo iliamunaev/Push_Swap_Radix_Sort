@@ -6,7 +6,7 @@
 /*   By: imunaev- <imunaev-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 13:40:14 by imunaev-          #+#    #+#             */
-/*   Updated: 2025/01/09 20:14:15 by imunaev-         ###   ########.fr       */
+/*   Updated: 2025/01/09 23:50:21 by imunaev-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include "../libft/libft.h"
 
 #include <stdbool.h>    // for bool
-#include <stdlib.h>     // for malloc, free
+#include <stdlib.h>     // for malloc, free, exit
 #include <limits.h>
 
 #define VALUE_ERROR LONG_MAX
@@ -57,7 +57,7 @@ void	free_stx(t_stacks *stx);
 t_node *insert_num(t_node *head, int value);
 t_node	*create_node(int x);
 void	free_split_arrs(char ***arrs);
-int	assign_index(t_stacks *stx);
+void	assign_index(t_stacks *stx);
 
 // commands
 void	ra(t_stacks *stx);
@@ -78,7 +78,12 @@ void	radix_sort(t_stacks *stx);
 void radix_sort_a(t_stacks *stx, int shift);
 void radix_sort_b(t_stacks *stx, int shift);
 
+int	get_index_position(t_stack *stack, int index);
+int	find_min_index(t_stack *stack);
+
 int is_sorted(t_stacks *stx);
 
+int	error_exit(t_stacks *stx);
+int	program_exit(t_stacks *stx, char ***arrs);
 
 #endif

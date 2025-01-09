@@ -1,38 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   assign_index.c                                     :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: imunaev- <imunaev-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/09 18:47:28 by imunaev-          #+#    #+#             */
-/*   Updated: 2025/01/09 23:15:18 by imunaev-         ###   ########.fr       */
+/*   Created: 2025/01/09 22:36:05 by imunaev-          #+#    #+#             */
+/*   Updated: 2025/01/09 23:49:25 by imunaev-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-void	assign_index(t_stacks *stx)
+int	error_exit(t_stacks *stx)
 {
-	t_node *current;
-	t_node *compare;
-
-	current = stx->a->head;
-	while (1)
-	{
-		compare = stx->a->head;
-		while (1)
-		{
-			if (current->value > compare->value)
-				current->index++;
-			compare = compare->next;
-			if (compare == stx->a->head)
-				break;
-		}
-		current = current->next;
-		if (current == stx->a->head)
-			break;
-	}
-	return ;
+	free_stx(stx);
+	ft_putstr_fd("Error\n", 2);
+	exit(EXIT_FAILURE);
 }
 
+int	program_exit(t_stacks *stx, char ***arrs)
+{
+	free_stx(stx);
+	free_split_arrs(arrs);
+	exit(EXIT_SUCCESS);
+}

@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: imunaev- <imunaev-@student.hive.fi>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/09 22:35:54 by imunaev-          #+#    #+#             */
+/*   Updated: 2025/01/10 00:39:38 by imunaev-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
@@ -7,7 +18,7 @@ void free_split_arrs(char ***arrs)
 	int j;
 
 	if (!arrs)
-		return;
+		return ;
 
 	while (arrs[i])
 	{
@@ -25,48 +36,44 @@ void free_split_arrs(char ***arrs)
 		}
 		i++;
 	}
-
 	free(arrs);
 	arrs = NULL;
 }
-
-void	free_circular_list(t_node *head)
+void free_circular_list(t_node *head)
 {
-	t_node	*current;
-	t_node	*next;
+    t_node *current;
+    t_node *next;
 
-	if (!head)
-		return ;
-	current = head;
-	next = NULL;
-	while (current)
-	{
-		next = current->next;
-		free(current);
-		if (next == head)
-			break ;
-		current = next;
-	}
+    if (!head)
+        return;
+
+    current = head->next;
+    while (current != head)
+    {
+        next = current->next;
+        free(current);
+        current = next;
+    }
+
+    free(head); // Free the head node
 }
+
 
 void	free_stx(t_stacks *stx)
 {
-	if (!stx || ! stx->a || !stx->b)
+	if (!stx)
 		return ;
 	if (stx->a)
 	{
 		if (stx->a->head)
 			free_circular_list(stx->a->head);
 		free(stx->a);
-		stx->a = NULL;
 	}
 	if (stx->b)
 	{
 		if (stx->b->head)
 			free_circular_list(stx->b->head);
 		free(stx->b);
-		stx->b = NULL;
 	}
 	free(stx);
-	stx = NULL;
 }
