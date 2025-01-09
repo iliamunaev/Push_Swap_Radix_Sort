@@ -18,7 +18,8 @@ SRCS	= $(SRCDIR)/main.c \
 			(SRCDIR)/init_stack.c \
 			(SRCDIR)/utils.c \
 			(SRCDIR)/assign_index.c \
-			(SRCDIR)/commands.c
+			(SRCDIR)/commands.c \
+			(SRCDIR)/sort.c
 
 OBJS     = $(addprefix $(OBJDIR)/, $(notdir $(SRCS:.c=.o)))
 

@@ -6,7 +6,7 @@
 /*   By: imunaev- <imunaev-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 13:40:14 by imunaev-          #+#    #+#             */
-/*   Updated: 2025/01/09 19:04:51 by imunaev-         ###   ########.fr       */
+/*   Updated: 2025/01/09 20:14:15 by imunaev-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,17 @@ void	pa(t_stacks *stx);
 void	pb(t_stacks *stx);
 void	sa(t_stacks *stx);
 void	sb(t_stacks *stx);
+
+// sort function
+void	sort(t_stacks *stx);
+void	sort_2(t_stacks *stx);
+void	sort_3(t_stacks *s);
+void	sort_4_5(t_stacks *s);
+void	radix_sort(t_stacks *stx);
+void radix_sort_a(t_stacks *stx, int shift);
+void radix_sort_b(t_stacks *stx, int shift);
+
+int is_sorted(t_stacks *stx);
+
 
 #endif

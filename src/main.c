@@ -6,7 +6,7 @@
 /*   By: imunaev- <imunaev-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 17:41:39 by imunaev-          #+#    #+#             */
-/*   Updated: 2025/01/09 19:13:38 by imunaev-         ###   ########.fr       */
+/*   Updated: 2025/01/09 20:22:00 by imunaev-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 // TEST ------------------------
 // Helper function to print all integers in stack_a
 #include <stdio.h>
-
+/*
 static void print_test_stack(t_stacks *stx)
 {
     if (!stx)
@@ -22,6 +22,7 @@ static void print_test_stack(t_stacks *stx)
         printf("Error: The stack structure is NULL.\n");
         return;
     }
+    printf("\n");
 
     t_node *current_a = stx->a ? stx->a->head : NULL;
     t_node *current_b = stx->b ? stx->b->head : NULL;
@@ -89,7 +90,7 @@ static void print_test_stack(t_stacks *stx)
     printf("  a    idx\t  b    idx\n");
     printf("--------------------------\n\n");
 }
-
+*/
 // ***********************************************************/
 // END TEST ******************************************************/
 
@@ -104,17 +105,17 @@ int	main(int ac, char **av)
 	if (!stx)
 		return (1);
 
-
-
+/*
 	printf("Initial Stacks:\n");
 	print_test_stack(stx);
+*/
 
 	if(!assign_index(stx))
 		return 1;
 
-	printf("Indexed Stacks:\n");
-	print_test_stack(stx);
-
+	//printf("Indexed Stacks:\n");
+	//print_test_stack(stx);
+/*
 	sa(stx);
 	print_test_stack(stx);
 
@@ -138,17 +139,22 @@ int	main(int ac, char **av)
 
 	rra(stx);
 	print_test_stack(stx);
-
-
-
-	// Run Push_Swap algorithm
-	//push_swap(stx);
-/*
-	printf("After Stacks:\n");
-	print_test_stack(stx->stack_a, stx->stack_b);
-	printf("--------------------------\n");
 */
-	// Free memory and exit
+
+
+	// Run algorithm
+	if(!is_sorted(stx))
+	{
+		//printf("Not sorted...\n");
+		sort(stx);
+	}
+	//else
+	//	printf("yes\n");
+
+
+	//print_test_stack(stx);
+
+
 	free_stx(stx);
 	return (0);
 }
