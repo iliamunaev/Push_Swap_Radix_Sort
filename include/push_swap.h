@@ -1,29 +1,60 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: imunaev- <imunaev-@student.hive.fi>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/23 13:40:14 by imunaev-          #+#    #+#             */
+/*   Updated: 2025/01/09 11:49:57 by imunaev-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
 # include "../libft/libft.h"
-# include <stdlib.h>
-# include <unistd.h>
-# include <stdio.h>
-#include <stdbool.h>
+
+#include <stdbool.h>    // for bool
+#include <stdlib.h>     // for malloc, free
 #include <limits.h>
 
-#define ERROR_VALUE LLONG_MIN
+#define VALUE_ERROR LONG_MAX
+
+typedef struct s_node
+{
+	int				value;
+	struct s_node	*prev;
+	struct s_node	*next;
+}	t_node;
+
+typedef struct s_stack
+{
+    t_node *head;
+    int size;
+} t_stack;
 
 typedef struct s_stacks
 {
-	int		*a;
-	int		*b;
-	int		size_a;
-	int		size_b;
+	t_stack	*a;
+	t_stack	*b;
+}	t_stacks;
 
-}			t_stacks;
+typedef struct s_find_number
+{
+    int value;
+    bool found;
+} t_find_number;
 
-// input validation
-int	is_valid(int ac, char **av);
-long long	ft_atoi_safe(char *s);
-int	get_len(int ac, char **av);
-int	ft_isspace(char c);
-
+t_stacks	*init_stack(int ac, char **av);
+char	***split_arrs(int ac, char **av);
+int	get_len_arr(char ***arrs);
+int	*get_int_arr(int size, char ***arrs);
+t_stacks	*fill_up_stack(t_stacks *stx, int *arr, int size);
+void	free_circular_list(t_node *head);
+void	free_stx(t_stacks *stx);
+t_node *insert_num(t_node *head, int value);
+t_node	*create_node(int x);
+void	free_split_arrs(char ***arrs);
 
 #endif
