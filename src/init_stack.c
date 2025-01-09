@@ -6,12 +6,13 @@
 /*   By: imunaev- <imunaev-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 10:49:30 by imunaev-          #+#    #+#             */
-/*   Updated: 2025/01/09 11:48:51 by imunaev-         ###   ########.fr       */
+/*   Updated: 2025/01/09 14:55:21 by imunaev-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
+#include <stdio.h>
 t_node	*create_node(int x)
 {
 	t_node	*new_node;
@@ -49,10 +50,8 @@ t_node *insert_num(t_node *head, int value)
 
 t_stacks	*fill_up_stack(t_stacks *stx, int *arr, int size)
 {
-	stx->a->size = size;
-
 	size--;
-	while (size > 0)
+	while (size >= 0)
 	{
 		stx->a->head = insert_num(stx->a->head, arr[size]);
 		if (!stx->a->head)
@@ -64,6 +63,7 @@ t_stacks	*fill_up_stack(t_stacks *stx, int *arr, int size)
 	}
 	return (stx);
 }
+
 static int ft_issign(char c)
 {
 	return(c == '-' || c == '+');
@@ -93,15 +93,16 @@ static long int 	ft_atoi_safe(char *s)
 		i++;
 	}
 
-	while (ft_isdigit(s[i]))
+	while (s[i] && ft_isdigit(s[i]))
 	{
 		num = num * 10 + (s[i] - '0');
 		if(num > INT_MAX || num < INT_MIN)
 			return(VALUE_ERROR);
 		i++;
 	}
-	return ((int)(num * sign));
+	return ((long int)(num * sign));
 }
+
 int	fill_int_arr(char ***arrs, int *arr)
 {
 	int	i;
@@ -119,7 +120,7 @@ int	fill_int_arr(char ***arrs, int *arr)
 			num = ft_atoi_safe(arrs[i][j]);
 			if(num == VALUE_ERROR)
 				return(0);
-			arr[idx] = num;
+			arr[idx] = (int)num;
 			idx++;
 			j++;
 		}
@@ -132,7 +133,7 @@ int	*get_int_arr(int size, char ***arrs)
 {
 	int	*arr;
 
-	arr = malloc(size * sizeof(int));
+	arr = malloc((size + 1) * sizeof(int));
 	if (!arr)
 	{
 		free_split_arrs(arrs);
@@ -144,7 +145,7 @@ int	*get_int_arr(int size, char ***arrs)
 	return (arr);
 }
 
-int	get_len_arr(char ***arrs)
+int	get_len_arr(char ***arrs) // tested
 {
 	int	len;
 	int	i;
@@ -168,26 +169,27 @@ int	get_len_arr(char ***arrs)
 char	***split_arrs(int ac, char **av)
 {
 	char	***arrs;
-	int		i;
+	int	i;
+	int	j;
 
-	if (av == NULL)
-		return (NULL);
 	arrs = malloc(ac * sizeof(char **));
 	if (!arrs)
 		return (NULL);
 	i = 0;
+	j = 0;
 	while (i < ac)
 	{
-		arrs[i] = ft_split(av[i], ' ');
-		if (!arrs[i])
+		arrs[j] = ft_split(av[i], ' ');
+		if (!arrs[j])
 		{
 			free_split_arrs(arrs);
 			free(arrs);
 			return (NULL);
 		}
 		i++;
+		j++;
 	}
-	arrs[i] = NULL;
+	arrs[j] = NULL;
 	return (arrs);
 }
 
@@ -219,11 +221,11 @@ t_stacks	*init_stack(int ac, char **av)
 	stx->a->size = 0;
 	stx->b->size = 0;
 
-	arrs = split_arrs(ac, av);
+	arrs = split_arrs(ac, av); // tested
 	if (!arrs)
 		return (NULL);
 
-	size = get_len_arr(arrs);
+	size = get_len_arr(arrs); // tested
 
 	arr = get_int_arr(size, arrs);
 	if (!arr)
