@@ -6,7 +6,7 @@
 /*   By: imunaev- <imunaev-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 10:49:30 by imunaev-          #+#    #+#             */
-/*   Updated: 2025/01/09 14:55:21 by imunaev-         ###   ########.fr       */
+/*   Updated: 2025/01/09 17:30:43 by imunaev-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,9 +131,13 @@ int	fill_int_arr(char ***arrs, int *arr)
 
 int	*get_int_arr(int size, char ***arrs)
 {
+
+	printf("in get_int_arr\n");
 	int	*arr;
 
-	arr = malloc((size + 1) * sizeof(int));
+	arr = malloc(size * sizeof(int));
+	printf("arr success\n");
+
 	if (!arr)
 	{
 		free_split_arrs(arrs);
@@ -141,6 +145,9 @@ int	*get_int_arr(int size, char ***arrs)
 	}
 	if(!fill_int_arr(arrs, arr))
 		return (NULL);
+
+	printf("after fill_int_arr\n");
+
 	free_split_arrs(arrs);
 	return (arr);
 }
@@ -172,7 +179,7 @@ char	***split_arrs(int ac, char **av)
 	int	i;
 	int	j;
 
-	arrs = malloc(ac * sizeof(char **));
+	arrs = malloc((ac + 1) * sizeof(char **));
 	if (!arrs)
 		return (NULL);
 	i = 0;
@@ -183,7 +190,6 @@ char	***split_arrs(int ac, char **av)
 		if (!arrs[j])
 		{
 			free_split_arrs(arrs);
-			free(arrs);
 			return (NULL);
 		}
 		i++;
@@ -195,6 +201,8 @@ char	***split_arrs(int ac, char **av)
 
 t_stacks	*init_stack(int ac, char **av)
 {
+	printf("in init_stack\n");
+
 	int	*arr;
 	int	size;
 	t_stacks	*stx;
@@ -203,19 +211,22 @@ t_stacks	*init_stack(int ac, char **av)
 	stx = malloc(sizeof(t_stacks));
 	if (!stx)
 		return (NULL);
+	printf("stx success\n");
+
 	stx->a = malloc(sizeof(t_stack));
 	if (!stx->a)
 	{
 		free_stx(stx);
 		return (NULL);
 	}
-
+	printf("stx->a success\n");
 	stx->b = malloc(sizeof(t_stack));
 	if (!stx->b)
 	{
 		free_stx(stx);
 		return (NULL);
 	}
+	printf("stx->a success\n");
 	stx->a->head = NULL;
 	stx->b->head = NULL;
 	stx->a->size = 0;
@@ -226,6 +237,9 @@ t_stacks	*init_stack(int ac, char **av)
 		return (NULL);
 
 	size = get_len_arr(arrs); // tested
+	printf("size: %d\n", size);
+
+	printf("before get_int_arr\n");
 
 	arr = get_int_arr(size, arrs);
 	if (!arr)
@@ -233,6 +247,9 @@ t_stacks	*init_stack(int ac, char **av)
 		free_stx(stx);
 		return (NULL);
 	}
+	printf("before fill_up_stack\n");
+
+
 	stx = fill_up_stack(stx, arr, size);
 	if (!stx)
 	{

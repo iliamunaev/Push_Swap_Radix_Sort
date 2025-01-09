@@ -1,38 +1,35 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: imunaev- <imunaev-@student.hive.fi>        +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/09 11:22:00 by imunaev-          #+#    #+#             */
-/*   Updated: 2025/01/09 11:34:48 by imunaev-         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-void	free_split_arrs(char ***arrs)
+void free_split_arrs(char ***arrs)
 {
-	int	i;
-	int	j;
+	int i = 0;
+	int j;
 
 	if (!arrs)
-		return ;
-	i = 0;
-	while (arrs[i] != NULL)
+		return;
+
+	while (arrs[i])
 	{
-		j = 0;
-		while (arrs[i][j] != NULL)
+		if (arrs[i] != NULL)
 		{
-			free(arrs[i][j]);
-			j++;
+			j = 0;
+			while (arrs[i][j] != NULL)
+			{
+				free(arrs[i][j]);
+				arrs[i][j] = NULL;
+				j++;
+			}
+			free(arrs[i]);
+			arrs[i] = NULL;
 		}
-		free(arrs[i]);
 		i++;
 	}
+
 	free(arrs);
+	arrs = NULL;
 }
+
 void	free_circular_list(t_node *head)
 {
 	t_node	*current;
