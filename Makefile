@@ -29,7 +29,6 @@ all: $(LIBFT) $(NAME)
 # Build the executable
 $(NAME): $(OBJS)
 	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) -L$(LIBDIR) -lft
-	@echo ""
 	@echo "\033[32m\"PUSH_SWAP\" is successfully created!\033[0m"
 
 # Build object files
@@ -45,6 +44,7 @@ $(LIBFT):
 clean:
 	rm -rf $(OBJDIR)
 	@$(MAKE) clean -C $(LIBDIR)
+
 
 # Clean all (object files and executable)
 fclean: clean
