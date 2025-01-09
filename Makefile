@@ -17,7 +17,8 @@ LIBFT	= $(LIBDIR)/libft.a
 SRCS	= $(SRCDIR)/main.c \
 			(SRCDIR)/init_stack.c \
 			(SRCDIR)/utils.c \
-			(SRCDIR)/assign_index.c
+			(SRCDIR)/assign_index.c \
+			(SRCDIR)/commands.c
 
 OBJS     = $(addprefix $(OBJDIR)/, $(notdir $(SRCS:.c=.o)))
 

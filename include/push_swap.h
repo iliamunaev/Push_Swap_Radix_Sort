@@ -6,7 +6,7 @@
 /*   By: imunaev- <imunaev-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 13:40:14 by imunaev-          #+#    #+#             */
-/*   Updated: 2025/01/09 18:34:02 by imunaev-         ###   ########.fr       */
+/*   Updated: 2025/01/09 19:04:51 by imunaev-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,5 +58,15 @@ t_node *insert_num(t_node *head, int value);
 t_node	*create_node(int x);
 void	free_split_arrs(char ***arrs);
 int	assign_index(t_stacks *stx);
+
+// commands
+void	ra(t_stacks *stx);
+void	rb(t_stacks *stx);
+void	rra(t_stacks *stx);
+void	rrb(t_stacks *stx);
+void	pa(t_stacks *stx);
+void	pb(t_stacks *stx);
+void	sa(t_stacks *stx);
+void	sb(t_stacks *stx);
 
 #endif

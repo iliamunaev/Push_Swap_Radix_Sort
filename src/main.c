@@ -6,7 +6,7 @@
 /*   By: imunaev- <imunaev-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 17:41:39 by imunaev-          #+#    #+#             */
-/*   Updated: 2025/01/09 18:38:55 by imunaev-         ###   ########.fr       */
+/*   Updated: 2025/01/09 19:13:38 by imunaev-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,12 +87,11 @@ static void print_test_stack(t_stacks *stx)
     // Print the bottom separator and labels
     printf("----- -----\t----- -----\n");
     printf("  a    idx\t  b    idx\n");
+    printf("--------------------------\n\n");
 }
 
 // ***********************************************************/
-// TEST ******************************************************/
-
-
+// END TEST ******************************************************/
 
 int	main(int ac, char **av)
 {
@@ -109,14 +108,38 @@ int	main(int ac, char **av)
 
 	printf("Initial Stacks:\n");
 	print_test_stack(stx);
-	printf("--------------------------\n\n");
 
-    if(!assign_index(stx))
-        return 1;
+	if(!assign_index(stx))
+		return 1;
 
-    printf("Indexed Stacks:\n");
+	printf("Indexed Stacks:\n");
 	print_test_stack(stx);
-	printf("--------------------------\n\n");
+
+	sa(stx);
+	print_test_stack(stx);
+
+	pb(stx);
+	print_test_stack(stx);
+
+	pb(stx);
+	print_test_stack(stx);
+
+	sb(stx);
+	print_test_stack(stx);
+
+	rrb(stx);
+	print_test_stack(stx);
+
+	pa(stx);
+	print_test_stack(stx);
+
+	pa(stx);
+	print_test_stack(stx);
+
+	rra(stx);
+	print_test_stack(stx);
+
+
 
 	// Run Push_Swap algorithm
 	//push_swap(stx);

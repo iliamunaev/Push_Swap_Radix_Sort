@@ -48,6 +48,7 @@ void	free_circular_list(t_node *head)
 		current = next;
 	}
 }
+
 void	free_stx(t_stacks *stx)
 {
 	if (!stx || ! stx->a || !stx->b)
