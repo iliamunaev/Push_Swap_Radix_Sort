@@ -6,7 +6,7 @@
 /*   By: imunaev- <imunaev-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 13:17:08 by imunaev-          #+#    #+#             */
-/*   Updated: 2025/01/09 13:17:16 by imunaev-         ###   ########.fr       */
+/*   Updated: 2025/01/09 14:58:26 by imunaev-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,10 @@
 
 #define VALUE_ERROR LONG_MAX
 
+int	ft_isdigit(int c)
+{
+	return (c >= '0' && c <= '9');
+}
 static int ft_issign(char c)
 {
 	return (c == '-' || c == '+');
@@ -42,7 +46,7 @@ static long int ft_atoi_safe(char *s)
 		i++;
 	}
 
-	while (s[i] >= '0' && s[i] <= '9')
+	while (s[i] && ft_isdigit(s[i]))
 	{
 		num = num * 10 + (s[i] - '0');
 		if (num > INT_MAX || num < INT_MIN)
@@ -61,6 +65,7 @@ void test_ft_atoi_safe()
 	assert(ft_atoi_safe("	12345") == 12345);
 	assert(ft_atoi_safe("	-12345") == -12345);
 	assert(ft_atoi_safe("\t\n12345") == 12345);
+	assert(ft_atoi_safe("0") == 0);
 
 	// Test inputs with overflow/underflow
 	assert(ft_atoi_safe("2147483648") == VALUE_ERROR);  // Greater than INT_MAX
