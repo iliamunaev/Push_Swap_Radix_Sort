@@ -21,7 +21,8 @@ SRCS	= $(SRCDIR)/main.c \
 			(SRCDIR)/commands.c \
 			(SRCDIR)/sort.c \
 			(SRCDIR)/error.c \
-			(SRCDIR)/sort_utils.c
+			(SRCDIR)/sort_utils.c \
+			(SRCDIR)/validate.c
 
 OBJS     = $(addprefix $(OBJDIR)/, $(notdir $(SRCS:.c=.o)))
 

@@ -6,7 +6,7 @@
 /*   By: imunaev- <imunaev-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 13:40:14 by imunaev-          #+#    #+#             */
-/*   Updated: 2025/01/10 10:22:47 by imunaev-         ###   ########.fr       */
+/*   Updated: 2025/01/10 11:13:00 by imunaev-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,9 +81,11 @@ void radix_sort_b(t_stacks *stx, int shift);
 int	get_index_position(t_stack *stack, int index);
 int	find_min_index(t_stack *stack);
 
+void	validate(int ac, char **av);
 int is_sorted(t_stacks *stx);
 int ft_issign(char c);
 int ft_isspace(char c);
+int	is_duplicate(int *arr, int size);
 
 int	error_exit(t_stacks *stx);
 int	program_exit(t_stacks *stx, char ***arrs);

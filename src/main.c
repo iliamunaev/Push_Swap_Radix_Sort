@@ -6,7 +6,7 @@
 /*   By: imunaev- <imunaev-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 17:41:39 by imunaev-          #+#    #+#             */
-/*   Updated: 2025/01/09 23:46:03 by imunaev-         ###   ########.fr       */
+/*   Updated: 2025/01/10 11:13:40 by imunaev-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,62 +98,20 @@ int	main(int ac, char **av)
 {
 	t_stacks	*stx;
 
-	// validation() + dupicatrs
+	if(ac < 2)
+		return(EXIT_FAILURE);
+	//validate(ac, av);
 
-	// Initialize stacks
-	stx = init_stack(ac - 1, av + 1); // Skip the program name
-	if (!stx)
-		error_exit(stx);
-
-/*
-	printf("Initial Stacks:\n");
-	print_test_stack(stx);
-*/
-
+	stx = init_stack(ac - 1, av + 1);
 	assign_index(stx);
-
 
 	//printf("Indexed Stacks:\n");
 	//print_test_stack(stx);
-/*
-	sa(stx);
-	print_test_stack(stx);
 
-	pb(stx);
-	print_test_stack(stx);
-
-	pb(stx);
-	print_test_stack(stx);
-
-	sb(stx);
-	print_test_stack(stx);
-
-	rrb(stx);
-	print_test_stack(stx);
-
-	pa(stx);
-	print_test_stack(stx);
-
-	pa(stx);
-	print_test_stack(stx);
-
-	rra(stx);
-	print_test_stack(stx);
-*/
-
-
-	// Run algorithm
 	if(!is_sorted(stx))
-	{
-		//printf("Not sorted...\n");
 		sort(stx);
-	}
-	//else
-	//	printf("yes\n");
-
 
 	//print_test_stack(stx);
-
 
 	free_stx(stx);
 	return (EXIT_SUCCESS);
