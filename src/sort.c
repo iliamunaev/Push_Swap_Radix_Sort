@@ -6,7 +6,7 @@
 /*   By: imunaev- <imunaev-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 19:18:35 by imunaev-          #+#    #+#             */
-/*   Updated: 2025/01/09 23:44:35 by imunaev-         ###   ########.fr       */
+/*   Updated: 2025/01/10 10:20:34 by imunaev-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ void	radix_sort_a(t_stacks *stx, int shift)
 		size--;
 	}
 }
+
 void	radix_sort_b(t_stacks *stx, int shift)
 {
 	int	size;

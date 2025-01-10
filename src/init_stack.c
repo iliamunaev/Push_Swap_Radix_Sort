@@ -6,7 +6,7 @@
 /*   By: imunaev- <imunaev-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 10:49:30 by imunaev-          #+#    #+#             */
-/*   Updated: 2025/01/10 01:07:05 by imunaev-         ###   ########.fr       */
+/*   Updated: 2025/01/10 10:31:18 by imunaev-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,24 +56,11 @@ t_stacks	*fill_up_stack(t_stacks *stx, int *arr, int size)
 	{
 		stx->a->head = insert_num(stx->a->head, arr[size]);
 		if (!stx->a->head)
-		{
-			free_circular_list(stx->a->head);
-			return (NULL);
-		}
+			error_exit(stx);
 		stx->a->size++;
 		size--;
 	}
 	return (stx);
-}
-
-static int ft_issign(char c)
-{
-	return(c == '-' || c == '+');
-}
-
-static int ft_isspace(char c)
-{
-	return(c == ' ' || c == '\n' || c == '\f' || c == '\r' || c == '\t' || c == '\v');
 }
 
 static long int 	ft_atoi_safe(char *s)
@@ -229,13 +216,7 @@ t_stacks	*init_stack(int ac, char **av)
 		free_split_arrs(arrs);
 		return (NULL);
 	}
-	// continue from here
 	stx = fill_up_stack(stx, arr, size);
-	if (!stx)
-	{
-		free_split_arrs(arrs);
-		return (NULL);
-	}
 	free(arr);
 	return (stx);
 }

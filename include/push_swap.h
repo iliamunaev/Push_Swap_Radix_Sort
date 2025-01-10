@@ -6,7 +6,7 @@
 /*   By: imunaev- <imunaev-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 13:40:14 by imunaev-          #+#    #+#             */
-/*   Updated: 2025/01/09 23:50:21 by imunaev-         ###   ########.fr       */
+/*   Updated: 2025/01/10 10:22:47 by imunaev-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,8 @@ int	get_index_position(t_stack *stack, int index);
 int	find_min_index(t_stack *stack);
 
 int is_sorted(t_stacks *stx);
+int ft_issign(char c);
+int ft_isspace(char c);
 
 int	error_exit(t_stacks *stx);
 int	program_exit(t_stacks *stx, char ***arrs);

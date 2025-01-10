@@ -6,11 +6,21 @@
 /*   By: imunaev- <imunaev-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 22:35:54 by imunaev-          #+#    #+#             */
-/*   Updated: 2025/01/10 00:39:38 by imunaev-         ###   ########.fr       */
+/*   Updated: 2025/01/10 10:22:29 by imunaev-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
+
+int ft_issign(char c)
+{
+	return(c == '-' || c == '+');
+}
+
+int ft_isspace(char c)
+{
+	return(c == ' ' || c == '\n' || c == '\f' || c == '\r' || c == '\t' || c == '\v');
+}
 
 void free_split_arrs(char ***arrs)
 {
