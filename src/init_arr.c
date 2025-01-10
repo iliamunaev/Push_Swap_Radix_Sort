@@ -6,7 +6,7 @@
 /*   By: imunaev- <imunaev-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 14:35:45 by imunaev-          #+#    #+#             */
-/*   Updated: 2025/01/10 14:42:32 by imunaev-         ###   ########.fr       */
+/*   Updated: 2025/01/10 17:17:47 by imunaev-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static long int	ft_atoi_safe(char *s)
 {
 	int			sign;
 	int			i;
-	long long	num;
+	long		num;
 
 	num = 0;
 	i = 0;
@@ -34,7 +34,7 @@ static long int	ft_atoi_safe(char *s)
 	while (s[i] && ft_isdigit(s[i]))
 	{
 		num = num * 10 + (s[i] - '0');
-		if (num > INT_MAX || num < INT_MIN)
+		if ((sign == 1 && num > INT_MAX) || (sign == -1 && (-num) < INT_MIN))
 			return (VALUE_ERROR);
 		i++;
 	}
@@ -57,7 +57,10 @@ static int	fill_int_arr(char ***arrs, int *arr)
 		{
 			num = ft_atoi_safe(arrs[i][j]);
 			if (num == VALUE_ERROR)
+			{
+				free_arrs_arr(arrs, arr);
 				return (0);
+			}
 			arr[idx] = (int)num;
 			idx++;
 			j++;

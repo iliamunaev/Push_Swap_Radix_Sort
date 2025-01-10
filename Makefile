@@ -3,8 +3,8 @@ NAME = push_swap
 
 # Compiler and flags
 # TEST # gcc = gcc -fsanitize=address -g -O1
-CC = gcc
-CFLAGS = -Wall -Wextra -Werror -g
+CC = gcc -fsanitize=address -g -O1
+CFLAGS = -Wall -Wextra -Werror
 
 # Directories
 SRCDIR	= src

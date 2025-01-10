@@ -6,7 +6,7 @@
 /*   By: imunaev- <imunaev-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 13:40:14 by imunaev-          #+#    #+#             */
-/*   Updated: 2025/01/10 14:53:59 by imunaev-         ###   ########.fr       */
+/*   Updated: 2025/01/10 17:18:06 by imunaev-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,5 +102,6 @@ bool		handle_digit(const char *s, t_valid_ctx *ctx);
 void		handle_spaces_in_middle(const char *s, t_valid_ctx *ctx);
 int			error_exit(t_stacks *stx);
 int			program_exit(t_stacks *stx, char ***arrs);
+void		free_arrs_arr(char ***arrs, int *arr);
 
 #endif

@@ -1,6 +1,6 @@
-#include <stdio.h>
 #include "../include/push_swap.h"
 
+#include <stdio.h>
 static void print_test_stack(t_stacks *stx)
 {
     if (!stx)
