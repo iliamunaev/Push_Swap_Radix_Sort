@@ -6,7 +6,7 @@
 /*   By: imunaev- <imunaev-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 13:40:14 by imunaev-          #+#    #+#             */
-/*   Updated: 2025/01/10 11:13:00 by imunaev-         ###   ########.fr       */
+/*   Updated: 2025/01/10 13:36:00 by imunaev-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,19 @@
 
 # include "../libft/libft.h"
 
-#include <stdbool.h>    // for bool
-#include <stdlib.h>     // for malloc, free, exit
+#include <stdbool.h>
+#include <stdlib.h>
 #include <limits.h>
 
 #define VALUE_ERROR LONG_MAX
+
+typedef struct s_valid_ctx
+{
+    int   i;            // current index in the string
+    bool  in_number;    // are we currently parsing a number?
+    bool  leading_zero; // did we see '0' as first digit of current number?
+    int   found_digit;  // have we encountered at least one digit in the entire string?
+} t_valid_ctx;
 
 typedef struct s_node
 {
@@ -81,7 +89,7 @@ void radix_sort_b(t_stacks *stx, int shift);
 int	get_index_position(t_stack *stack, int index);
 int	find_min_index(t_stack *stack);
 
-void	validate(int ac, char **av);
+int	validate_input(int ac, char **av);
 int is_sorted(t_stacks *stx);
 int ft_issign(char c);
 int ft_isspace(char c);

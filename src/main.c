@@ -6,7 +6,7 @@
 /*   By: imunaev- <imunaev-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 17:41:39 by imunaev-          #+#    #+#             */
-/*   Updated: 2025/01/10 11:13:40 by imunaev-         ###   ########.fr       */
+/*   Updated: 2025/01/10 12:44:51 by imunaev-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,8 +100,11 @@ int	main(int ac, char **av)
 
 	if(ac < 2)
 		return(EXIT_FAILURE);
-	//validate(ac, av);
-
+	if(!validate_input(ac, av))
+	{
+		ft_putstr_fd("Error\n", 2);
+		exit(EXIT_FAILURE);
+	}
 	stx = init_stack(ac - 1, av + 1);
 	assign_index(stx);
 
