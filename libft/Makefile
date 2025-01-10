@@ -3,7 +3,6 @@ NAME = libft.a
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
-
 # Libft source files
 LIBFT_SRC = ft_atoi.c \
             ft_bzero.c \
@@ -46,6 +45,7 @@ PRINTF_SRC = ft_printf/ft_printf.c \
 
 # Combine all source files
 SRC = $(LIBFT_SRC) $(PRINTF_SRC)
+
 # Object files directory
 OBJ_DIR = obj
 
@@ -60,16 +60,13 @@ all: $(NAME)
 
 # Create the library
 $(NAME): $(OBJ)
-	# Create the library
-
-$(NAME): $(OBJ)
 	ar rcs $(NAME) $(OBJ)
+	@echo "\033[32m\"$(NAME)\": successfully created!\033[0m"
 	@echo ""
-	@echo "\033[32m\"libft.h\" is successfully created!\033[0m"
 
 # Rule to compile source files into object files in the obj directory
 $(OBJ_DIR)/%.o: %.c $(HEADER)
-	mkdir -p $(dir $@)  # Ensure subdirectories exist
+	@mkdir -p $(dir $@) # Ensure subdirectories exist
 	$(CC) $(CFLAGS) -I. -c $< -o $@
 
 # Phony targets
@@ -78,10 +75,14 @@ $(OBJ_DIR)/%.o: %.c $(HEADER)
 # Clean object files and directory
 clean:
 	rm -rf $(OBJ_DIR)
+	@echo "\033[32m\"$(NAME)\": temporary files successfully removed!\033[0m"
+	@echo ""
 
 # Clean all generated files (including the library)
 fclean: clean
 	rm -f $(NAME)
+	@echo "\033[32m\"$(NAME)\": executable successfully removed!\033[0m"
+	@echo ""
 
 # Rebuild the project
 re: fclean all

@@ -1,67 +1,71 @@
-# Output executable
-NAME = push_swap
+# --------------------------- Executable and Library ------------------------- #
+NAME    = push_swap
+LIBFT   = $(LIBDIR)/libft.a
 
-# Compiler and flags
-# TEST # gcc = gcc -fsanitize=address -g -O1
-CC = gcc -fsanitize=address -g -O1
-CFLAGS = -Wall -Wextra -Werror
+# ----------------------------- Compiler Settings ---------------------------- #
+CC      = gcc
+CFLAGS  = -Wall -Wextra -Werror
+# Uncomment and adjust if you want to use AddressSanitizer for debugging
+# CC      = gcc -fsanitize=address -g -O1
 
-# Directories
-SRCDIR	= src
-OBJDIR	= obj
-LIBDIR	= libft
-INCDIR	= include
-LIBFT	= $(LIBDIR)/libft.a
+# --------------------------------- Folders ---------------------------------- #
+SRCDIR  = src
+OBJDIR  = obj
+LIBDIR  = libft
+INCDIR  = include
 
-# Source files and object files
-SRCS	= $(SRCDIR)/main.c \
-			(SRCDIR)/init_stack.c \
-			(SRCDIR)/init_arr.c \
-			(SRCDIR)/circular_linked_list.c \
-			(SRCDIR)/utils.c \
-			(SRCDIR)/assign_index.c \
-			(SRCDIR)/commands_1.c \
-			(SRCDIR)/commands_2.c \
-			(SRCDIR)/commands_utils.c \
-			(SRCDIR)/sort.c \
-			(SRCDIR)/sort_two_five.c \
-			(SRCDIR)/error.c \
-			(SRCDIR)/sort_utils.c \
-			(SRCDIR)/validate.c \
-			(SRCDIR)/validate_utils.c
+# ------------------------------ Source Files -------------------------------- #
+SRCS = \
+	$(SRCDIR)/main.c \
+	$(SRCDIR)/init_stack.c \
+	$(SRCDIR)/init_arr.c \
+	$(SRCDIR)/circular_linked_list.c \
+	$(SRCDIR)/utils.c \
+	$(SRCDIR)/assign_index.c \
+	$(SRCDIR)/commands_1.c \
+	$(SRCDIR)/commands_2.c \
+	$(SRCDIR)/commands_utils.c \
+	$(SRCDIR)/sort.c \
+	$(SRCDIR)/sort_two_five.c \
+	$(SRCDIR)/error.c \
+	$(SRCDIR)/sort_utils.c \
+	$(SRCDIR)/validate.c \
+	$(SRCDIR)/validate_utils.c
 
-OBJS     = $(addprefix $(OBJDIR)/, $(notdir $(SRCS:.c=.o)))
+OBJS = $(addprefix $(OBJDIR)/, $(notdir $(SRCS:.c=.o)))
 
-# Rules
+# ------------------------------- Main Targets ------------------------------- #
 all: $(LIBFT) $(NAME)
 
-# Build the executable
 $(NAME): $(OBJS)
 	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) -L$(LIBDIR) -lft
-	@echo "\033[32m\"PUSH_SWAP\" is successfully created!\033[0m"
+	@echo "\033[32m\"$(NAME)\": successfully created!\033[0m"
 
-# Build object files
+$(LIBFT):
+	@$(MAKE) -C $(LIBDIR)
+
+# ------------------------------ Object Files -------------------------------- #
 $(OBJDIR)/%.o: $(SRCDIR)/%.c
 	@mkdir -p $(OBJDIR)
 	$(CC) $(CFLAGS) -I$(INCDIR) -I$(LIBDIR) -c $< -o $@
 
-# Build the libft library
-$(LIBFT):
-	@$(MAKE) -C $(LIBDIR)
-
-# Clean object files
+# ------------------------------- Clean Targets ------------------------------ #
 clean:
 	rm -rf $(OBJDIR)
 	@$(MAKE) clean -C $(LIBDIR)
+	@echo "\033[32m\"$(NAME)\": temporary files successfully removed!\033[0m"
+	@echo ""
 
 
-# Clean all (object files and executable)
 fclean: clean
 	rm -f $(NAME)
 	@$(MAKE) fclean -C $(LIBDIR)
+	@echo "\033[32m\"$(NAME)\": executable successfully removed!\033[0m"
+	@echo ""
 
-# Rebuild everything
+
+
 re: fclean all
 
-# Phony targets
+# ---------------------------- Phony Declarations ---------------------------- #
 .PHONY: all clean fclean re

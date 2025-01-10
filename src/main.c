@@ -6,12 +6,24 @@
 /*   By: imunaev- <imunaev-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 17:41:39 by imunaev-          #+#    #+#             */
-/*   Updated: 2025/01/10 17:05:01 by imunaev-         ###   ########.fr       */
+/*   Updated: 2025/01/10 23:50:16 by imunaev-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
+/**
+ * @brief Main entry point of the program.
+ *
+ * This function validates the input arguments, initializes the stack,
+ * assigns indices to the stack elements, checks if the stack is already
+ * sorted, and sorts it if necessary. Finally, it frees allocated memory.
+ *
+ * @param ac The argument count.
+ * @param av The array of argument strings.
+ * @return int EXIT_SUCCESS (0) if the program completes successfully,
+ *         or EXIT_FAILURE (1) if an error occurs.
+ */
 int	main(int ac, char **av)
 {
 	t_stacks	*stx;

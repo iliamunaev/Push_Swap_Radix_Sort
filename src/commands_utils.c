@@ -6,12 +6,21 @@
 /*   By: imunaev- <imunaev-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 14:22:55 by imunaev-          #+#    #+#             */
-/*   Updated: 2025/01/10 14:28:58 by imunaev-         ###   ########.fr       */
+/*   Updated: 2025/01/10 23:54:21 by imunaev-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
+/**
+ * @brief Swaps the first two nodes in a circular doubly linked list.
+ *
+ * This function modifies the pointers of the first two nodes in the stack
+ * to swap their positions while maintaining the circular doubly linked
+ * list structure. If the stack has only two nodes, the head pointer is updated.
+ *
+ * @param stack The stack on which the operation is performed.
+ */
 void	swap_nodes(t_stack *stack)
 {
 	t_node	*first;
@@ -37,6 +46,16 @@ void	swap_nodes(t_stack *stack)
 	}
 }
 
+/**
+ * @brief Removes the first node from the stack.
+ *
+ * This function frees the memory of the node at the head of the stack
+ * and updates the head pointer and other links to maintain the circular
+ * doubly linked list structure. If the stack has only one node, the stack
+ * becomes empty.
+ *
+ * @param stack The stack from which the node is removed.
+ */
 void	pop(t_stack *stack)
 {
 	t_node	*node;
@@ -55,6 +74,16 @@ void	pop(t_stack *stack)
 	free(node);
 }
 
+/**
+ * @brief Inserts a new node with the given value into the stack.
+ *
+ * This function inserts a new node with the specified value into the
+ * circular doubly linked list at the head of the stack.
+ *
+ * @param stack The stack where the new node is inserted.
+ * @param value The value to insert into the stack.
+ * @return t_node* Pointer to the new head of the stack.
+ */
 t_node	*insert(t_stack *stack, int value)
 {
 	stack->head = insert_num(stack->head, value);

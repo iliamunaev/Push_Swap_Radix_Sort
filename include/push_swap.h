@@ -6,7 +6,7 @@
 /*   By: imunaev- <imunaev-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 13:40:14 by imunaev-          #+#    #+#             */
-/*   Updated: 2025/01/10 17:18:06 by imunaev-         ###   ########.fr       */
+/*   Updated: 2025/01/11 00:12:29 by imunaev-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,40 +20,46 @@
 
 # define VALUE_ERROR LONG_MAX
 
+// Validation context for input strings
 typedef struct s_valid_ctx
 {
-	int		i;
-	bool	in_number;
-	bool	leading_zero;
-	int		found_digit;
+	int		i;				// Current position in the string.
+	bool	in_number;		// Flag to indicate if currently in a number.
+	bool	leading_zero;	// Flag for leading zeros in a number.
+	int		found_digit;	// Indicates if at least one digit was found.
 }	t_valid_ctx;
 
+// Node structure for the circular doubly linked list
 typedef struct s_node
 {
-	int				value;
-	int				index;
-	struct s_node	*prev;
-	struct s_node	*next;
+	int				value;	// Value stored in the node.
+	int				index;	// Index assigned during sorting.
+	struct s_node	*prev;	// Pointer to the previous node.
+	struct s_node	*next;	// Pointer to the next node.
 }	t_node;
 
+// Stack structure containing a circular doubly linked list and its size
 typedef struct s_stack
 {
-	t_node	*head;
-	int		size;
+	t_node	*head;	// Pointer to the head of the stack.
+	int		size;	// Number of nodes in the stack.
 }	t_stack;
 
+// Structure containing both stacks A and B
 typedef struct s_stacks
 {
-	t_stack	*a;
-	t_stack	*b;
+	t_stack	*a;	// Pointer to stack A.
+	t_stack	*b;	// Pointer to stack B.
 }	t_stacks;
 
+// Utility for searching specific values in the stack
 typedef struct s_find_number
 {
-	int		value;
-	bool	found;
+	int		value;	// Value being searched.
+	bool	found;	// Indicates if the value was found.
 }	t_find_number;
 
+// Function declarations
 t_stacks	*init_stack(int ac, char **av);
 char		***split_arrs(int ac, char **av);
 int			get_len_arr(char ***arrs);

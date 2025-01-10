@@ -6,12 +6,21 @@
 /*   By: imunaev- <imunaev-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 14:35:45 by imunaev-          #+#    #+#             */
-/*   Updated: 2025/01/10 17:17:47 by imunaev-         ###   ########.fr       */
+/*   Updated: 2025/01/10 23:52:31 by imunaev-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
+/**
+ * @brief Safely converts a string to a long integer.
+ *
+ * This function handles whitespace, signs, and checks for integer overflow
+ * or underflow. If an overflow or underflow occurs, it returns VALUE_ERROR.
+ *
+ * @param s The string to convert.
+ * @return long int The converted number, or VALUE_ERROR on failure.
+ */
 static long int	ft_atoi_safe(char *s)
 {
 	int			sign;
@@ -41,6 +50,17 @@ static long int	ft_atoi_safe(char *s)
 	return ((long int)(num * sign));
 }
 
+/**
+ * @brief Fills an integer array from a split array of strings.
+ *
+ * Converts the strings in the split array into integers and stores them in
+ * the provided array. If an error occurs (e.g., invalid input or overflow),
+ * it frees allocated memory and returns 0.
+ *
+ * @param arrs The split array of strings.
+ * @param arr The integer array to fill.
+ * @return int 1 on success, 0 on failure.
+ */
 static int	fill_int_arr(char ***arrs, int *arr)
 {
 	int		i;
@@ -70,6 +90,16 @@ static int	fill_int_arr(char ***arrs, int *arr)
 	return (1);
 }
 
+/**
+ * @brief Converts a split array of strings into an array of integers.
+ *
+ * Allocates memory for an integer array and fills it with numbers
+ * converted from the provided split array of strings.
+ *
+ * @param size The size of the resulting integer array.
+ * @param arrs The split array of strings.
+ * @return int* Pointer to the integer array, or NULL on failure.
+ */
 int	*get_int_arr(int size, char ***arrs)
 {
 	int	*arr;
@@ -83,6 +113,14 @@ int	*get_int_arr(int size, char ***arrs)
 	return (arr);
 }
 
+/**
+ * @brief Calculates the total number of elements in a split array.
+ *
+ * Iterates through the split array and counts the total number of strings.
+ *
+ * @param arrs The split array of strings.
+ * @return int The total number of elements in the split array.
+ */
 int	get_len_arr(char ***arrs)
 {
 	int	len;
@@ -104,6 +142,16 @@ int	get_len_arr(char ***arrs)
 	return (len);
 }
 
+/**
+ * @brief Splits input arguments into a 3D array of strings.
+ *
+ * Each input string is split using spaces as delimiters. The result is a
+ * 3D array where each sub-array represents the split strings of one input.
+ *
+ * @param ac The number of input arguments.
+ * @param av The array of input argument strings.
+ * @return char*** A 3D array of split strings, or NULL on failure.
+ */
 char	***split_arrs(int ac, char **av)
 {
 	char	***arrs;

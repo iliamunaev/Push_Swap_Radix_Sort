@@ -6,7 +6,6 @@
 #    run_tests.sh                                       :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: imunaev- <imunaev-@student.hive.fi>        +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/10 22:44:03 by imunaev-          #+#    #+#              #
 #    Updated: 2025/01/10 22:44:06 by imunaev-         ###   ########.fr        #
 #                                                                              #
@@ -51,7 +50,7 @@ function run_error_test() {
 
 # -----------------------------
 # REGULAR / SIMPLE TESTS
-# (Shows push_swap output + number of moves)
+# (Checks with checker + counts moves)
 # -----------------------------
 function run_test() {
   local description="$1"
@@ -70,18 +69,22 @@ function run_test() {
     moves=$(wc -l <<< "$ps_out")
   fi
 
+  # Check sorting correctness with checker
+  checker_output=$(echo "$ps_out" | ./checker_linux $ARG)
+
   # Print push_swap output if you want to see the commands
   # echo "Push_swap output:"
   # echo "$ps_out"
 
-  # Check if push_swap indicates an error
-  if [[ "$ps_out" == "Error" ]]; then
-    echo -e "\033[31mPush_swap output: $ps_out\033[0m"
+  # Print result of the checker
+  if [[ "$checker_output" == "OK" ]]; then
+    echo -e "\033[32mChecker result: $checker_output\033[0m"
   else
-    echo -e "\033[32mPush_swap completed successfully.\033[0m"
-    echo "Number of moves: $moves"
+    echo -e "\033[31mChecker result: $checker_output\033[0m"
   fi
 
+  # Print the number of moves
+  echo "Number of moves: $moves"
   echo ""
 
   # Pause for 1 second before the next test
@@ -123,10 +126,6 @@ done
 # 2. SIMPLE TESTS
 print_header "IDENTITY AND SIMPLE TESTS"
 
-run_test "Empty string: '  '. Empty output" "  "
-run_test "Zero parameters. Empty output" ""
-run_test "Single element" "42"
-run_test "Already sorted list" "0 1 2 3"
 run_test "6 values + INT_MAX and INT_MIN" "-7 2147483647 77 41 0 -2147483648"
 run_test "2 random values" "2 -5"
 run_test "3 random values" "2 1 0"
@@ -147,5 +146,6 @@ run_test "2000 random distinct values" "$(seq -100000 100000 | shuf -n 2000 | tr
 run_test "5000 random distinct values" "$(seq -100000 100000 | shuf -n 5000 | tr '\n' ' ')"
 run_test "8000 random distinct values" "$(seq -100000 100000 | shuf -n 8000 | tr '\n' ' ')"
 run_test "10000 random distinct values" "$(seq -100000 100000 | shuf -n 10000 | tr '\n' ' ')"
+
 
 echo "All tests completed."

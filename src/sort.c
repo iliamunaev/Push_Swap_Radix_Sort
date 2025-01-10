@@ -6,12 +6,22 @@
 /*   By: imunaev- <imunaev-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 19:18:35 by imunaev-          #+#    #+#             */
-/*   Updated: 2025/01/10 14:48:03 by imunaev-         ###   ########.fr       */
+/*   Updated: 2025/01/11 00:02:45 by imunaev-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
+/**
+ * @brief Performs one pass of radix sort on stack A.
+ *
+ * Moves elements from stack A to stack B based on the current bit (determined
+ * by `shift`) of their indices. Elements with a 0 bit are moved to stack B,
+ * and elements with a 1 bit remain in stack A.
+ *
+ * @param stx Pointer to the stack structure containing stacks A and B.
+ * @param shift The bit position to evaluate for sorting.
+ */
 void	radix_sort_a(t_stacks *stx, int shift)
 {
 	int	size;
@@ -27,6 +37,16 @@ void	radix_sort_a(t_stacks *stx, int shift)
 	}
 }
 
+/**
+ * @brief Performs one pass of radix sort on stack B.
+ *
+ * Moves elements back from stack B to stack A based on the current bit
+ * (determined by `shift`) of their indices. Elements with a 0 bit are moved
+ * to stack A, and elements with a 1 bit remain in stack B.
+ *
+ * @param stx Pointer to the stack structure containing stacks A and B.
+ * @param shift The bit position to evaluate for sorting.
+ */
 void	radix_sort_b(t_stacks *stx, int shift)
 {
 	int	size;
@@ -42,6 +62,14 @@ void	radix_sort_b(t_stacks *stx, int shift)
 	}
 }
 
+/**
+ * @brief Sorts the stacks using the radix sort algorithm.
+ *
+ * Repeatedly evaluates each bit of the indices of the elements in stack A,
+ * moving them between stacks A and B to achieve a sorted order.
+ *
+ * @param stx Pointer to the stack structure containing stacks A and B.
+ */
 void	radix_sort(t_stacks *stx)
 {
 	int	shift;
@@ -55,6 +83,15 @@ void	radix_sort(t_stacks *stx)
 	}
 }
 
+/**
+ * @brief Sorts the stack A based on its size using different algorithms.
+ *
+ * For small stacks (size 2 to 5), it uses specific sorting functions
+ * (`sort_2`, `sort_3`, `sort_4_5`). For larger stacks, it applies the
+ * radix sort algorithm.
+ *
+ * @param stx Pointer to the stack structure containing stacks A and B.
+ */
 void	sort(t_stacks *stx)
 {
 	if (stx->a->size == 2)
