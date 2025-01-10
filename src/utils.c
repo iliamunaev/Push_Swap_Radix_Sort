@@ -6,30 +6,36 @@
 /*   By: imunaev- <imunaev-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 22:35:54 by imunaev-          #+#    #+#             */
-/*   Updated: 2025/01/10 10:22:29 by imunaev-         ###   ########.fr       */
+/*   Updated: 2025/01/10 15:01:00 by imunaev-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-int ft_issign(char c)
+int	ft_issign(char c)
 {
-	return(c == '-' || c == '+');
+	return (c == '-' || c == '+');
 }
 
-int ft_isspace(char c)
+int	ft_isspace(char c)
 {
-	return(c == ' ' || c == '\n' || c == '\f' || c == '\r' || c == '\t' || c == '\v');
+	return (c == ' '
+		|| c == '\n'
+		|| c == '\f'
+		|| c == '\r'
+		|| c == '\t'
+		|| c == '\v'
+	);
 }
 
-void free_split_arrs(char ***arrs)
+void	free_split_arrs(char ***arrs)
 {
-	int i = 0;
-	int j;
+	int	i;
+	int	j;
 
+	i = 0;
 	if (!arrs)
 		return ;
-
 	while (arrs[i])
 	{
 		if (arrs[i] != NULL)
@@ -49,25 +55,23 @@ void free_split_arrs(char ***arrs)
 	free(arrs);
 	arrs = NULL;
 }
-void free_circular_list(t_node *head)
+
+void	free_circular_list(t_node *head)
 {
-    t_node *current;
-    t_node *next;
+	t_node	*current;
+	t_node	*next;
 
-    if (!head)
-        return;
-
-    current = head->next;
-    while (current != head)
-    {
-        next = current->next;
-        free(current);
-        current = next;
-    }
-
-    free(head); // Free the head node
+	if (!head)
+		return ;
+	current = head->next;
+	while (current != head)
+	{
+		next = current->next;
+		free(current);
+		current = next;
+	}
+	free(head);
 }
-
 
 void	free_stx(t_stacks *stx)
 {

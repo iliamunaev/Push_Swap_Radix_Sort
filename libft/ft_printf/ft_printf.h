@@ -6,7 +6,7 @@
 /*   By: imunaev- <imunaev-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 15:24:13 by imunaev-          #+#    #+#             */
-/*   Updated: 2024/11/18 22:16:14 by imunaev-         ###   ########.fr       */
+/*   Updated: 2025/01/10 14:56:57 by imunaev-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 ssize_t	ft_printf(const char *format, ...);
 ssize_t	handle_format(va_list args, char specifier);
-int	in_set(char c);
+int		in_set(char c);
 
 // utils
 ssize_t	ft_putchar(char c);

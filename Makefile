@@ -16,13 +16,19 @@ LIBFT	= $(LIBDIR)/libft.a
 # Source files and object files
 SRCS	= $(SRCDIR)/main.c \
 			(SRCDIR)/init_stack.c \
+			(SRCDIR)/init_arr.c \
+			(SRCDIR)/circular_linked_list.c \
 			(SRCDIR)/utils.c \
 			(SRCDIR)/assign_index.c \
-			(SRCDIR)/commands.c \
+			(SRCDIR)/commands_1.c \
+			(SRCDIR)/commands_2.c \
+			(SRCDIR)/commands_utils.c \
 			(SRCDIR)/sort.c \
+			(SRCDIR)/sort_two_five.c \
 			(SRCDIR)/error.c \
 			(SRCDIR)/sort_utils.c \
-			(SRCDIR)/validate.c
+			(SRCDIR)/validate.c \
+			(SRCDIR)/validate_utils.c
 
 OBJS     = $(addprefix $(OBJDIR)/, $(notdir $(SRCS:.c=.o)))
 

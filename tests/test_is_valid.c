@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: imunaev- <imunaev-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/10 13:44:08 by imunaev-          #+#    #+#             */
-/*   Updated: 2025/01/10 13:44:08 by imunaev-         ###   ########.fr       */
+/*   Created: 2025/01/10 14:11:16 by imunaev-          #+#    #+#             */
+/*   Updated: 2025/01/10 14:11:17 by imunaev-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,19 @@ typedef struct s_valid_ctx
 	int		found_digit;	// have we encountered at least one digit in the entire string?
 } t_valid_ctx;
 
+void	*ft_memset(void *s, int c, size_t n)
+{
+	unsigned char	*buffer;
+
+	buffer = (unsigned char *)s;
+	while (n--)
+		*buffer++ = (unsigned char)c;
+	return (s);
+}
+void	ft_bzero(void *s, size_t n)
+{
+	ft_memset(s, 0, n);
+}
 static int ft_issign(char c)
 {
 	return(c == '-' || c == '+');
@@ -110,51 +123,61 @@ static void handle_spaces_in_middle(const char *s, t_valid_ctx *ctx)
 	ctx->in_number = false;
 	ctx->leading_zero = false;
 }
-
+static int process_current_char(const char *s, t_valid_ctx *ctx)
+{
+	// If current char is a sign
+	if (ft_issign(s[ctx->i]))
+	{
+		if (!handle_sign(s, ctx))
+			return (0);	   // indicates "invalid, exit is_valid()"
+		return (2);		   // "handled, continue the loop in is_valid()"
+	}
+	// If it's a digit
+	if (ft_isdigit(s[ctx->i]))
+	{
+		if (!handle_digit(s, ctx))
+			return (0);	   // "invalid, exit is_valid()"
+		return (2);		   // "handled, continue"
+	}
+	// If it's space
+	if (ft_isspace(s[ctx->i]))
+	{
+		handle_spaces_in_middle(s, ctx);
+		return (2);		   // "handled, continue"
+	}
+	// If none of the above -> invalid character
+	return (1);			   // "invalid char, exit is_valid()"
+}
 int is_valid(const char *s)
 {
-	t_valid_ctx ctx = {0};
-	// i=0, in_number=false, leading_zero=false, found_digit=0
+	t_valid_ctx ctx;
 
-	// 1) Skip leading spaces. If all spaces => invalid
+	ft_bzero(&ctx, sizeof(t_valid_ctx));
 	if (!skip_initial_spaces(s, &ctx))
-		return 0;
+		return (0);
 
-	// 2) Main loop
 	while (s[ctx.i])
 	{
-		// a) Sign?
-		if (ft_issign(s[ctx.i]))
-		{
-			if (!handle_sign(s, &ctx))
-				return 0;
-			continue;
-		}
+		// Call the new helper
+		int result = process_current_char(s, &ctx);
 
-		// b) Digit?
-		if (ft_isdigit(s[ctx.i]))
-		{
-			if (!handle_digit(s, &ctx))
-				return 0;
-			continue;
-		}
+		// If result == 0: handle_sign / handle_digit failed -> invalid
+		if (result == 0)
+			return (0);
 
-		// c) Space in the middle?
-		if (ft_isspace(s[ctx.i]))
-		{
-			handle_spaces_in_middle(s, &ctx);
-			continue;
-		}
+		// If result == 1: not a sign, digit, or space -> invalid
+		if (result == 1)
+			return (0);
 
-		// d) Any other character => invalid
-		return 0;
+		// If result == 2: means we "handled" the char, so we just continue
+		// so do nothing else here
 	}
 
-	// 3) Must have at least one digit overall
+	// If we never found a digit, invalid
 	if (ctx.found_digit == 0)
-		return 0;
+		return (0);
 
-	return 1;
+	return (1);
 }
 
 // A small helper for running each test
