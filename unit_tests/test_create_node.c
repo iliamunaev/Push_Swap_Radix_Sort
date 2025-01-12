@@ -6,13 +6,13 @@
 /*   By: imunaev- <imunaev-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 13:34:26 by imunaev-          #+#    #+#             */
-/*   Updated: 2025/01/09 13:34:27 by imunaev-         ###   ########.fr       */
+/*   Updated: 2025/01/12 12:15:44 by imunaev-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "test_utils.h"
 
-t_node	*create_node(int x)
+static t_node	*create_node(int x)
 {
 	t_node	*new_node;
 
@@ -20,11 +20,11 @@ t_node	*create_node(int x)
 	if (!new_node)
 		return (NULL);
 	new_node->value = x;
+	new_node->index = 0;
 	new_node->next = NULL;
 	new_node->prev = NULL;
 	return (new_node);
 }
-
 void test_create_node()
 {
 	// Test 1: Valid input

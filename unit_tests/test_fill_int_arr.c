@@ -6,14 +6,11 @@
 /*   By: imunaev- <imunaev-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 13:27:40 by imunaev-          #+#    #+#             */
-/*   Updated: 2025/01/09 13:27:45 by imunaev-         ###   ########.fr       */
+/*   Updated: 2025/01/12 12:17:59 by imunaev-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <assert.h>
-#include <limits.h>
+#include "test_utils.h"
 
 #define VALUE_ERROR LONG_MAX
 

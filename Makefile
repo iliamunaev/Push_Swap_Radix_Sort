@@ -6,7 +6,7 @@ LIBFT   = $(LIBDIR)/libft.a
 CC      = gcc
 CFLAGS  = -Wall -Wextra -Werror
 # Uncomment and adjust if you want to use AddressSanitizer for debugging
-# CC      = gcc -fsanitize=address -g -O1
+# CFLAGS  = -fsanitize=address -g -O1 -Wall -Wextra -Werror
 
 # --------------------------------- Folders ---------------------------------- #
 SRCDIR  = src
