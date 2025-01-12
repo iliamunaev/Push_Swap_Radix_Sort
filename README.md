@@ -9,7 +9,7 @@ The `push_swap` project is a sorting algorithm exercise designed to sort a stack
 
 **O(n^1.15)** for large inputs.
 
-![Push_Swap Complexity Analysis](ps_bigO.png)
+![Push_Swap Complexity Analysis](img/ps_bigO.png)
 
 
 
