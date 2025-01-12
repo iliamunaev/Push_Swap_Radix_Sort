@@ -6,7 +6,7 @@
 /*   By: imunaev- <imunaev-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 13:40:14 by imunaev-          #+#    #+#             */
-/*   Updated: 2025/01/11 00:12:29 by imunaev-         ###   ########.fr       */
+/*   Updated: 2025/01/12 11:23:50 by imunaev-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ int			validate_input(int ac, char **av);
 int			is_sorted(t_stacks *stx);
 int			ft_issign(char c);
 int			ft_isspace(char c);
-int			is_duplicate(int *arr, int size);
+bool		is_duplicate(int *arr, int size);
 bool		skip_initial_spaces(const char *s, t_valid_ctx *ctx);
 bool		handle_sign(const char *s, t_valid_ctx *ctx);
 bool		handle_sign(const char *s, t_valid_ctx *ctx);

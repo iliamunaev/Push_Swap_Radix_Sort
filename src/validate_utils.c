@@ -6,7 +6,7 @@
 /*   By: imunaev- <imunaev-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 13:58:21 by imunaev-          #+#    #+#             */
-/*   Updated: 2025/01/11 00:05:02 by imunaev-         ###   ########.fr       */
+/*   Updated: 2025/01/12 11:25:28 by imunaev-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@
  *
  * @param arr The array to check.
  * @param size The size of the array.
- * @return int 1 if duplicates are found, 0 otherwise.
+ * @return int true if duplicates are found, false otherwise.
  */
-int	is_duplicate(int *arr, int size)
+bool	is_duplicate(int *arr, int size)
 {
 	int	i;
 	int	j;
@@ -34,12 +34,12 @@ int	is_duplicate(int *arr, int size)
 		while (j < size)
 		{
 			if (arr[i] == arr[j])
-				return (1);
+				return (true);
 			j++;
 		}
 		i++;
 	}
-	return (0);
+	return (false);
 }
 
 /**

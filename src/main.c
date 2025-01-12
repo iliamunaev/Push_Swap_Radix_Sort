@@ -6,7 +6,7 @@
 /*   By: imunaev- <imunaev-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 17:41:39 by imunaev-          #+#    #+#             */
-/*   Updated: 2025/01/10 23:50:16 by imunaev-         ###   ########.fr       */
+/*   Updated: 2025/01/12 11:46:59 by imunaev-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	main(int ac, char **av)
 		ft_putstr_fd("Error\n", 2);
 		exit(EXIT_FAILURE);
 	}
-	stx = init_stack(ac - 1, av + 1);
+	stx = init_stack(ac, av);
 	assign_index(stx);
 	if (!is_sorted(stx))
 		sort(stx);

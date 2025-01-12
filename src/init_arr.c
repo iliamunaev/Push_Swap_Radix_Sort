@@ -6,7 +6,7 @@
 /*   By: imunaev- <imunaev-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 14:35:45 by imunaev-          #+#    #+#             */
-/*   Updated: 2025/01/10 23:52:31 by imunaev-         ###   ########.fr       */
+/*   Updated: 2025/01/12 11:48:27 by imunaev-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,10 +158,10 @@ char	***split_arrs(int ac, char **av)
 	int		i;
 	int		j;
 
-	arrs = malloc((ac + 1) * sizeof(char **));
+	arrs = malloc(ac * sizeof(char **));
 	if (!arrs)
 		return (NULL);
-	i = 0;
+	i = 1;
 	j = 0;
 	while (i < ac)
 	{
