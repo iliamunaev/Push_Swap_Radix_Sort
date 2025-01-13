@@ -6,7 +6,7 @@
 /*   By: imunaev- <imunaev-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 10:49:30 by imunaev-          #+#    #+#             */
-/*   Updated: 2025/01/10 23:51:08 by imunaev-         ###   ########.fr       */
+/*   Updated: 2025/01/13 16:55:27 by imunaev-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,10 @@ t_stacks	*init_stack(int ac, char **av)
 	if (!arr)
 		error_exit(stx);
 	if (is_duplicate(arr, size))
+	{
+		free(arr);
 		error_exit(stx);
+	}
 	stx = fill_up_stack(stx, arr, size);
 	free(arr);
 	return (stx);
