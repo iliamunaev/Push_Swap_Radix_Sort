@@ -61,7 +61,7 @@ all: $(NAME)
 # Create the library
 $(NAME): $(OBJ)
 	ar rcs $(NAME) $(OBJ)
-	@echo "\033[32m\"$(NAME)\": successfully created!\033[0m"
+	@echo -e "\033[32m\"$(NAME)\": successfully created!\033[0m"
 	@echo ""
 
 # Rule to compile source files into object files in the obj directory

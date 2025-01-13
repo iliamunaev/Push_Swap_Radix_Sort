@@ -39,7 +39,7 @@ all: $(LIBFT) $(NAME)
 
 $(NAME): $(OBJS)
 	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) -L$(LIBDIR) -lft
-	@echo "\033[32m\"$(NAME)\": successfully created!\033[0m"
+	@echo -e "\033[32m\"$(NAME)\": successfully created!\033[0m"
 
 $(LIBFT):
 	@$(MAKE) -C $(LIBDIR)
@@ -53,14 +53,14 @@ $(OBJDIR)/%.o: $(SRCDIR)/%.c
 clean:
 	rm -rf $(OBJDIR)
 	@$(MAKE) clean -C $(LIBDIR)
-	@echo "\033[32m\"$(NAME)\": temporary files successfully removed!\033[0m"
+	@echo -e "\033[32m\"$(NAME)\": temporary files successfully removed!\033[0m"
 	@echo ""
 
 
 fclean: clean
 	rm -f $(NAME)
 	@$(MAKE) fclean -C $(LIBDIR)
-	@echo "\033[32m\"$(NAME)\": executable successfully removed!\033[0m"
+	@echo -e "\033[32m\"$(NAME)\": executable successfully removed!\033[0m"
 	@echo ""
 
 

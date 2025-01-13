@@ -6,7 +6,7 @@
 /*   By: imunaev- <imunaev-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 13:40:14 by imunaev-          #+#    #+#             */
-/*   Updated: 2025/01/12 11:59:57 by imunaev-         ###   ########.fr       */
+/*   Updated: 2025/01/13 11:38:30 by imunaev-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,5 +113,9 @@ void		free_circular_list(t_node *head);
 void		free_stx(t_stacks *stx);
 int			error_exit(t_stacks *stx);
 int			program_exit(t_stacks *stx, char ***arrs);
+
+// tests
+// void print_test_stack(t_stacks *stx);
+// #include <stdio.h>
 
 #endif
