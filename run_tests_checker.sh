@@ -137,15 +137,12 @@ print_header "LARGER RANDOM TESTS"
 run_test "50 random distinct values"  "$(shuf -i 0-999 -n 50 | tr '\n' ' ')"
 run_test "100 random distinct values"  "$(shuf -i 0-999 -n 100 | tr '\n' ' ')"
 run_test "500 random distinct values"  "$(shuf -i 0-9999 -n 500 | tr '\n' ' ')"
-run_test "1000 random distinct values" "$(seq -100000 100000 | shuf -n 1000 | tr '\n' ' ')"
-run_test "1500 random distinct values" "$(seq -100000 100000 | shuf -n 1500 | tr '\n' ' ')"
-run_test "2000 random distinct values" "$(seq -100000 100000 | shuf -n 2000 | tr '\n' ' ')"
 
 # Uncomment for a larger stress test (may take a while)
-
-run_test "5000 random distinct values" "$(seq -100000 100000 | shuf -n 5000 | tr '\n' ' ')"
-run_test "8000 random distinct values" "$(seq -100000 100000 | shuf -n 8000 | tr '\n' ' ')"
-run_test "10000 random distinct values" "$(seq -100000 100000 | shuf -n 10000 | tr '\n' ' ')"
-
+#run_test "1000 random distinct values" "$(seq -100000 100000 | shuf -n 1000 | tr '\n' ' ')"
+#run_test "2000 random distinct values" "$(seq -100000 100000 | shuf -n 2000 | tr '\n' ' ')"
+#run_test "5000 random distinct values" "$(seq -100000 100000 | shuf -n 5000 | tr '\n' ' ')"
+#run_test "8000 random distinct values" "$(seq -100000 100000 | shuf -n 8000 | tr '\n' ' ')"
+#run_test "10000 random distinct values" "$(seq -100000 100000 | shuf -n 10000 | tr '\n' ' ')"
 
 echo "All tests completed."

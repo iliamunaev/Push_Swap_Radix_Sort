@@ -6,7 +6,7 @@
 /*   By: imunaev- <imunaev-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 10:49:30 by imunaev-          #+#    #+#             */
-/*   Updated: 2025/01/13 16:55:27 by imunaev-         ###   ########.fr       */
+/*   Updated: 2025/01/13 18:51:38 by imunaev-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,10 +71,7 @@ t_stacks	*init_stack(int ac, char **av)
 	if (size == 0 || size == 1)
 		program_exit(stx, arrs);
 	if (size > 10000)
-	{
-		free_split_arrs(arrs);
-		error_exit(stx);
-	}
+		program_exit(stx, arrs);
 	arr = get_int_arr(size, arrs);
 	if (!arr)
 		error_exit(stx);

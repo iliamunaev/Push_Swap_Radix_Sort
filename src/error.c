@@ -6,7 +6,7 @@
 /*   By: imunaev- <imunaev-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 22:36:05 by imunaev-          #+#    #+#             */
-/*   Updated: 2025/01/10 23:53:25 by imunaev-         ###   ########.fr       */
+/*   Updated: 2025/01/13 18:31:16 by imunaev-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,5 @@ int	program_exit(t_stacks *stx, char ***arrs)
 {
 	free_stx(stx);
 	free_split_arrs(arrs);
-	exit(EXIT_SUCCESS);
+	exit(EXIT_FAILURE);
 }

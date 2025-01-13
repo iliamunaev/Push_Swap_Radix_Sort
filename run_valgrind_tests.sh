@@ -3,12 +3,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    run_tests.sh                                       :+:      :+:    :+:    #
+#    run_valgrind_tests.sh                              :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: imunaev- <imunaev-@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/01/10 22:44:03 by imunaev-          #+#    #+#              #
-#    Updated: 2025/01/10 22:44:06 by imunaev-         ###   ########.fr        #
+#    Created: 2025/01/13 18:59:52 by imunaev-          #+#    #+#              #
+#    Updated: 2025/01/13 19:00:00 by imunaev-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,24 +23,26 @@ function print_header() {
 }
 
 # -----------------------------
-# ERROR MANAGEMENT TESTS
-# (Shows push_swap output directly)
+# RUN VALGRIND TEST
 # -----------------------------
-function run_error_test() {
+function run_valgrind_test() {
   local description="$1"
   local arg="$2"
 
   echo -e "\033[34m$description\033[0m"
   ARG="$arg"
 
-  # Capture push_swap output (including any errors)
-  ps_out="$(./push_swap $ARG 2>&1)"
+  # Run push_swap under Valgrind
+  valgrind_output=$(valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --log-file=valgrind.log ./push_swap $ARG 2>&1)
 
-  # Check if push_swap indicates an error
-  if [[ "$ps_out" == "Error" ]]; then
-    echo -e "\033[32mPush_swap output: $ps_out\033[0m"
+  # Display Valgrind output summary
+  grep -A 10 "HEAP SUMMARY" valgrind.log
+
+  # Indicate whether memory leaks were detected
+  if grep -q "All heap blocks were freed -- no leaks are possible" valgrind.log; then
+    echo -e "\033[32mNo memory leaks detected.\033[0m"
   else
-    echo -e "\033[31mPush_swap output: $ps_out\033[0m"
+    echo -e "\033[31mMemory leaks detected! Check valgrind.log for details.\033[0m"
   fi
 
   echo ""
@@ -50,8 +52,36 @@ function run_error_test() {
 }
 
 # -----------------------------
+# ERROR MANAGEMENT TESTS
+# -----------------------------
+function run_error_test() {
+  local description="$1"
+  local arg="$2"
+
+  echo -e "\033[34m$description\033[0m"
+  ARG="$arg"
+
+  # Capture push_swap output
+  ps_out="$(./push_swap $ARG 2>&1)"
+
+  # Check if push_swap indicates an error
+  if [[ "$ps_out" == "Error" ]]; then
+    echo -e "\033[32mPush_swap output: $ps_out\033[0m"
+  else
+    echo -e "\033[31mPush_swap output: $ps_out\033[0m"
+  fi
+
+  # Run Valgrind for the test
+  run_valgrind_test "$description (Valgrind Test)" "$ARG"
+
+  echo ""
+
+  # Pause for 1 second before the next test
+  sleep 0.5
+}
+
+# -----------------------------
 # REGULAR / SIMPLE TESTS
-# (Shows push_swap output + number of moves)
 # -----------------------------
 function run_test() {
   local description="$1"
@@ -82,12 +112,14 @@ function run_test() {
     echo "Number of moves: $moves"
   fi
 
+  # Run Valgrind for the test
+  run_valgrind_test "$description (Valgrind Test)" "$ARG"
+
   echo ""
 
   # Pause for 1 second before the next test
   sleep 0.5
 }
-
 
 # =============================
 #            MAIN
@@ -139,10 +171,6 @@ run_test "100 random distinct values" "$(seq -100000 100000 | shuf -n 100 | tr '
 run_test "500 random distinct values" "$(seq -100000 100000 | shuf -n 500 | tr '\n' ' ')"
 
 # Uncomment for a larger stress test (may take a while)
-#run_test "1000 random distinct values" "$(seq -100000 100000 | shuf -n 1000 | tr '\n' ' ')"
-#run_test "2000 random distinct values" "$(seq -100000 100000 | shuf -n 2000 | tr '\n' ' ')"
-#run_test "5000 random distinct values" "$(seq -100000 100000 | shuf -n 5000 | tr '\n' ' ')"
-#run_test "8000 random distinct values" "$(seq -100000 100000 | shuf -n 8000 | tr '\n' ' ')"
-#run_test "10000 random distinct values" "$(seq -100000 100000 | shuf -n 10000 | tr '\n' ' ')"
+# run_test "1000 random distinct values" "$(seq -100000 100000 | shuf -n 1000 | tr '\n' ' ')"
 
 echo "All tests completed."

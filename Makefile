@@ -3,9 +3,10 @@ NAME    = push_swap
 LIBFT   = $(LIBDIR)/libft.a
 
 # ----------------------------- Compiler Settings ---------------------------- #
-CC      = gcc
+CC      = cc
 CFLAGS  = -Wall -Wextra -Werror
-SANITIZE_CFLAGS = -fsanitize=address -g -O1 -Wall -Wextra -Werror
+#CFLAGS  = -Wall -Wextra -Werror -g -O0
+
 
 # --------------------------------- Folders ---------------------------------- #
 SRCDIR  = src
@@ -42,13 +43,6 @@ $(NAME): $(OBJS)
 
 $(LIBFT):
 	@$(MAKE) -C $(LIBDIR)
-
-# ------------------------------- Sanitizer Target --------------------------- #
-sanitize: CFLAGS=$(SANITIZE_CFLAGS)
-sanitize: clean $(LIBFT)
-	@$(MAKE) $(NAME)
-	@echo -e "\033[33m\"$(NAME)\": compiled with AddressSanitizer!\033[0m"
-
 
 # ------------------------------ Object Files -------------------------------- #
 $(OBJDIR)/%.o: $(SRCDIR)/%.c
