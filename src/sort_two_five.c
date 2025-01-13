@@ -6,7 +6,7 @@
 /*   By: imunaev- <imunaev-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 14:48:12 by imunaev-          #+#    #+#             */
-/*   Updated: 2025/01/13 11:38:53 by imunaev-         ###   ########.fr       */
+/*   Updated: 2025/01/13 12:00:58 by imunaev-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,28 +43,21 @@ void	sort_3(t_stacks *stx)
 	second = stx->a->head->next->value;
 	third = stx->a->head->next->next->value;
 	if (first > second && second > third)
-    {
-        sa(stx);
-
-        rra(stx);
-    }
-    else if (first > second && first > third && second < third)
-    {
-        ra(stx);
-    }
-    else if (first < second && first > third && second > third)
-    {
-        rra(stx);
-    }
-    else if (first > second && first < third && second < third)
-    {
-        sa(stx);
-    }
-    else if (first < second && first < third && second > third)
-    {
-        rra(stx);
+	{
 		sa(stx);
-    }
+		rra(stx);
+	}
+	else if (first > second && first > third && second < third)
+		ra(stx);
+	else if (first < second && first > third && second > third)
+		rra(stx);
+	else if (first > second && first < third && second < third)
+		sa(stx);
+	else if (first < second && first < third && second > third)
+	{
+		rra(stx);
+		sa(stx);
+	}
 }
 
 /**

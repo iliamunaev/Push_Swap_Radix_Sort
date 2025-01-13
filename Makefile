@@ -5,8 +5,7 @@ LIBFT   = $(LIBDIR)/libft.a
 # ----------------------------- Compiler Settings ---------------------------- #
 CC      = gcc
 CFLAGS  = -Wall -Wextra -Werror
-# Uncomment and adjust if you want to use AddressSanitizer for debugging
-# CFLAGS  = -fsanitize=address -g -O1 -Wall -Wextra -Werror
+SANITIZE_CFLAGS = -fsanitize=address -g -O1 -Wall -Wextra -Werror
 
 # --------------------------------- Folders ---------------------------------- #
 SRCDIR  = src
@@ -43,6 +42,13 @@ $(NAME): $(OBJS)
 
 $(LIBFT):
 	@$(MAKE) -C $(LIBDIR)
+
+# ------------------------------- Sanitizer Target --------------------------- #
+sanitize: CFLAGS=$(SANITIZE_CFLAGS)
+sanitize: clean $(LIBFT)
+	@$(MAKE) $(NAME)
+	@echo -e "\033[33m\"$(NAME)\": compiled with AddressSanitizer!\033[0m"
+
 
 # ------------------------------ Object Files -------------------------------- #
 $(OBJDIR)/%.o: $(SRCDIR)/%.c

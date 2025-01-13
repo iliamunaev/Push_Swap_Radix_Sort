@@ -6,7 +6,7 @@
 /*   By: imunaev- <imunaev-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 13:40:14 by imunaev-          #+#    #+#             */
-/*   Updated: 2025/01/13 11:38:30 by imunaev-         ###   ########.fr       */
+/*   Updated: 2025/01/13 11:45:12 by imunaev-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,40 +23,40 @@
 // Validation context for input strings
 typedef struct s_valid_ctx
 {
-	int		i;				// Current position in the string.
-	bool	in_number;		// Flag to indicate if currently in a number.
-	bool	leading_zero;	// Flag for leading zeros in a number.
-	int		found_digit;	// Indicates if at least one digit was found.
+	int		i;
+	bool	in_number;
+	bool	leading_zero;
+	int		found_digit;
 }	t_valid_ctx;
 
 // Node structure for the circular doubly linked list
 typedef struct s_node
 {
-	int				value;	// Value stored in the node.
-	int				index;	// Index assigned during sorting.
-	struct s_node	*prev;	// Pointer to the previous node.
-	struct s_node	*next;	// Pointer to the next node.
+	int				value;
+	int				index;
+	struct s_node	*prev;
+	struct s_node	*next;
 }	t_node;
 
 // Stack structure containing a circular doubly linked list and its size
 typedef struct s_stack
 {
-	t_node	*head;	// Pointer to the head of the stack.
-	int		size;	// Number of nodes in the stack.
+	t_node	*head;
+	int		size;
 }	t_stack;
 
 // Structure containing both stacks A and B
 typedef struct s_stacks
 {
-	t_stack	*a;	// Pointer to stack A.
-	t_stack	*b;	// Pointer to stack B.
+	t_stack	*a;
+	t_stack	*b;
 }	t_stacks;
 
 // Utility for searching specific values in the stack
 typedef struct s_find_number
 {
-	int		value;	// Value being searched.
-	bool	found;	// Indicates if the value was found.
+	int		value;
+	bool	found;
 }	t_find_number;
 
 // validation functions
@@ -113,9 +113,5 @@ void		free_circular_list(t_node *head);
 void		free_stx(t_stacks *stx);
 int			error_exit(t_stacks *stx);
 int			program_exit(t_stacks *stx, char ***arrs);
-
-// tests
-// void print_test_stack(t_stacks *stx);
-// #include <stdio.h>
 
 #endif
